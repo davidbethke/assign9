@@ -20,6 +20,7 @@ bool readDate(ifstream & in, Date & s) {
 	ss >> s.idNumber;
 	getline(in, s.emailAddress);
 	*/
+
 	return (in != NULL);
 }
 istream & operator>>(istream & in, Date &s) {
