@@ -9,6 +9,11 @@ bool writeDate(ofstream & out, const Date & s) {
 	out << s.day << "#" << s.year << endl;
 	return (out != NULL);
 }
+ostream & operator<<(ostream & out, const Date& s)
+{
+	s.display();
+	return out;
+}
 
 bool readDate(ifstream & in, Date & s) {
 	/*TODO readDate
@@ -23,7 +28,7 @@ bool readDate(ifstream & in, Date & s) {
 
 	return (in != NULL);
 }
-istream & operator>>(istream & in, Date &s) {
+istream & operator>>(istream & in, Date& s) {
 	if (&in == &cin)
 		cout << "Enter the Birthday's month: ";
 	in >> s.month;
@@ -49,18 +54,21 @@ Date::Date(int mn,int dy,int yr)
 	year=max(1,yr);
 
 }
+//TODO const
 void Date::display() const
 {
 	static char * name[]={"nothing","January","February","March","April",
 						"May","June","July","August","September","October",
 						"November","December"};
-	cout << name[month]<<" "<<day<<","<<year<<endl;
+	cout << name[month]<<" "<<day<<","<<year;
 }
 bool Date::operator<(const Date& other) const
 {
 	if(month != other.month)
 		return month < other.month;
-	else if (month < other.month)
+	else if (month < other.month && day!=other.day)
 		return day < other.day;
+	else
+		return false;
 
 }

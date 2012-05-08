@@ -51,12 +51,17 @@ BirthdayDatabase::~BirthdayDatabase() {
 void BirthdayDatabase::run() {
 	char choice;
 	Birthday s;
+	Birthday *sptr=NULL;
 	choice = displayMenuReadChoice();
 	do {
 		switch(tolower(choice)) {
 			case 'a':
 				cin >> s;
-				birthdaysByDate.insert(new Birthday(s));
+				sptr= new Birthday(s);
+				birthdaysByDate.insert(sptr);
+				birthdaysByName.insert(sptr);
+				birthdaysByMonth.insert(sptr);
+				//birthdaysByDate.insert(new Birthday(s));
 				break;
 			case 'i':
 			{

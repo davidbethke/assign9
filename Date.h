@@ -5,9 +5,9 @@ using namespace std;
 struct Date 
 {
 //public:
-	friend istream & operator>>(istream & in, Date & s);
-	friend bool writeDate(ofstream & out, const Date & s);
-	friend bool readDate(ifstream & in, Date & s);
+	//friend istream & operator>>(istream & in, Date & s);
+	//friend bool writeDate(ofstream & out, const Date & s);
+	//friend bool readDate(ifstream & in, Date & s);
 	Date();
 	Date(int , int , int);
 	~Date(){}
@@ -18,3 +18,7 @@ struct Date
 	int month, day, year;
 
 };
+istream & operator>>(istream & in, Date&  s);
+ostream & operator<<(ostream & out, const  Date&  s);
+bool writeDate(ofstream & out, const Date & s);
+bool readDate(ifstream & in, Date & s);

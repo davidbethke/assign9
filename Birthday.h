@@ -34,7 +34,8 @@ private:
 	int idNumber;
 	string emailAddress;
 	int month;
-	Date date;
+	//TODO const Date
+	 Date date; //only one birthday
 public:
 	class ByDate {
 	public:
