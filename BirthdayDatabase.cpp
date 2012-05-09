@@ -65,7 +65,7 @@ void BirthdayDatabase::run() {
 				break;
 			case 'i':
 			{
-				s.readIDNumber();
+				s.readDateMonthDay();
 				DateSet::iterator it = birthdaysByDate.find(&s);
 				cout << endl << **it << endl << endl;
 				break;
@@ -82,6 +82,15 @@ void BirthdayDatabase::run() {
 				break;
 			}
 			case 'm':
+			{
+				s.readMonth();
+				pair<MonthSet::iterator, MonthSet::iterator> itpair;
+				itpair = birthdaysByMonth.equal_range(&s);
+				MonthSet::iterator it;
+				for (it = itpair.first; it != itpair.second; ++it)
+					cout << endl << **it << endl;
+				cout << endl;
+			}
 				break;
 			case 'q':
 				break;

@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "Date.h"
 #include <iostream>
-
+#include <sstream>
 
 int Date::length[13]={0,31,28,30,31,30,31,30,31,30,31,30,31};
 bool writeDate(ofstream & out, const Date & s) {
@@ -16,15 +16,20 @@ ostream & operator<<(ostream & out, const Date& s)
 }
 
 bool readDate(ifstream & in, Date & s) {
-	/*TODO readDate
-	getline(in, s.month, '#');
-	getline(in, s.firstName, '#');
-	string str;
-	getline(in, str, '#');
-	stringstream ss(str);
-	ss >> s.idNumber;
-	getline(in, s.emailAddress);
-	*/
+	/*TODO readDate*/
+	string m,d,y;
+	
+	getline(in, m, '#');
+	stringstream ss(m);
+	ss >> s.month;
+	getline(in, d, '#');
+	stringstream ssd(d);
+	ss >> s.day;
+	getline(in, y, '#');
+	stringstream ssy(y);
+	ss >> s.year;
+	
+	
 
 	return (in != NULL);
 }

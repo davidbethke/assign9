@@ -17,7 +17,7 @@ private:
 	typedef multiset<Birthday*, Birthday::ByName> NameSet;
 	NameSet birthdaysByName;
 	typedef multiset<Birthday*, Birthday::ByMonth> MonthSet;
-	NameSet birthdaysByMonth;
+	MonthSet birthdaysByMonth;
 };
 
 #endif
