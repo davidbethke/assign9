@@ -41,7 +41,7 @@ BirthdayDatabase::~BirthdayDatabase() {
 	for (it = birthdaysByMonth.begin(); it != birthdaysByMonth.end(); ++it) {
 		if (outFile) {
 			writeBirthday(outFile, **it);
-			//cout << "Writing:"<<**it<<endl;
+			cout << "Writing:"<<**it<<endl;
 			getchar();
 			delete *it;
 		}
@@ -90,12 +90,14 @@ void BirthdayDatabase::run() {
 			case 'p':
 			{
 				s.readLastName();
+				string searchFor=s.lastName;
 				pair<NameSet::iterator, NameSet::iterator> itpair;
 				itpair.first = birthdaysByName.lower_bound(&s);
 				itpair.second = birthdaysByName.end();
 				NameSet::iterator it;
 				for (it = itpair.first; it != itpair.second; ++it)
-					cout << endl << **it << endl;
+					if(!(**it).lastName.compare(0,searchFor.length(),searchFor))
+						cout << endl << **it << endl;
 				cout << endl;
 				break;
 			}

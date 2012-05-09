@@ -9,6 +9,7 @@
 using namespace std;
 
 class Birthday {
+	friend class BirthdayDatabase;
 	friend class CompareBirthdaysByDate;
 	friend bool writeBirthday(ofstream & out, const Birthday & s);
 	friend bool readBirthday(ifstream & in, Birthday & s);
