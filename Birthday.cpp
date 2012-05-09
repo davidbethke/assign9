@@ -6,17 +6,21 @@ bool writeBirthday(ofstream & out, const Birthday & s) {
 	out << s.lastName << "#" << s.firstName << "#";
 	//out << s.idNumber << "#";
 	writeDate(out,s.date);
+	out<<endl; //TODO is this right?
 	return (out != NULL);
 }
 
 bool readBirthday(ifstream & in, Birthday & s) {
 	getline(in, s.lastName, '#');
 	getline(in, s.firstName, '#');
-	string str;
-	getline(in, str, '#');
-	stringstream ss(str);
+	//in.ignore();
+	//string str;
+	//getline(in, str, '#');
+	//stringstream ss(str);
 	//ss >> s.idNumber;
 	//getline(in, s.emailAddress);
+	readDate(in,s.date);
+	//in.ignore(2);
 	return (in != NULL);
 }
 ofstream & operator<<(ofstream & out, const Birthday & s) {
@@ -28,9 +32,9 @@ ofstream & operator<<(ofstream & out, const Birthday & s) {
 ifstream & operator>>(ifstream & in, Birthday & s) {
 	getline(in, s.lastName, '#');
 	getline(in, s.firstName, '#');
-	string str;
-	getline(in, str, '#');
-	stringstream ss(str);
+	//string str;
+	//getline(in, str, '#');
+	//stringstream ss(str);
 	//ss >> s.idNumber;
 	//getline(in, s.emailAddress);
 	return in;

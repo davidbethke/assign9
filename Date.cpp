@@ -5,8 +5,7 @@
 
 int Date::length[13]={0,31,28,30,31,30,31,30,31,30,31,30,31};
 bool writeDate(ofstream & out, const Date & s) {
-	out << s.month << "#" ;
-	out << s.day << "#" << s.year << endl;
+	out << s.month << "#" << s.day << "#" << s.year;
 	return (out != NULL);
 }
 ostream & operator<<(ostream & out, const Date& s)
@@ -24,10 +23,10 @@ bool readDate(ifstream & in, Date & s) {
 	ss >> s.month;
 	getline(in, d, '#');
 	stringstream ssd(d);
-	ss >> s.day;
-	getline(in, y, '#');
+	ssd >> s.day;
+	getline(in, y);
 	stringstream ssy(y);
-	ss >> s.year;
+	ssy >> s.year;
 	
 	
 
@@ -35,7 +34,7 @@ bool readDate(ifstream & in, Date & s) {
 }
 istream & operator>>(istream & in, Date& s) {
 	if (&in == &cin)
-		cout << "Enter the Birthday's month: ";
+		cout << "Enter the Birthday's month: (1-12)";
 	in >> s.month;
 	if (&in == &cin)
 		cout << "Enter the Birthday's day: ";

@@ -37,15 +37,18 @@ BirthdayDatabase::~BirthdayDatabase() {
 	ofstream outFile(fname.data());
 	if (!outFile)
 		cout << "Unable to save Birthday database." << endl;
-	DateSet::iterator it;
-	for (it = birthdaysByDate.begin(); it != birthdaysByDate.end(); ++it) {
+	MonthSet::iterator it;
+	for (it = birthdaysByMonth.begin(); it != birthdaysByMonth.end(); ++it) {
 		if (outFile) {
 			writeBirthday(outFile, **it);
+			//cout << "Writing:"<<**it<<endl;
+			getchar();
 			delete *it;
 		}
 	}
 	birthdaysByDate.clear();
 	birthdaysByName.clear();
+	birthdaysByMonth.clear();
 }
 
 void BirthdayDatabase::run() {
@@ -58,8 +61,11 @@ void BirthdayDatabase::run() {
 			case 'a':
 				cin >> s;
 				sptr= new Birthday(s);
+				//cout << "adding by date"<<endl;
 				birthdaysByDate.insert(sptr);
+				//cout << "adding by Name"<<endl;
 				birthdaysByName.insert(sptr);
+				//cout << "adding by Month"<<endl;
 				birthdaysByMonth.insert(sptr);
 				//birthdaysByDate.insert(new Birthday(s));
 				break;
@@ -75,6 +81,18 @@ void BirthdayDatabase::run() {
 				s.readLastName();
 				pair<NameSet::iterator, NameSet::iterator> itpair;
 				itpair = birthdaysByName.equal_range(&s);
+				NameSet::iterator it;
+				for (it = itpair.first; it != itpair.second; ++it)
+					cout << endl << **it << endl;
+				cout << endl;
+				break;
+			}
+			case 'p':
+			{
+				s.readLastName();
+				pair<NameSet::iterator, NameSet::iterator> itpair;
+				itpair.first = birthdaysByName.lower_bound(&s);
+				itpair.second = birthdaysByName.end();
 				NameSet::iterator it;
 				for (it = itpair.first; it != itpair.second; ++it)
 					cout << endl << **it << endl;
@@ -108,6 +126,7 @@ char BirthdayDatabase::displayMenuReadChoice() {
 	cout << "I - Search by Date" << endl;
 	cout << "L - Search by last name" << endl;
 	cout << "M - Search by Month" << endl;
+	cout << "P - Partial Last Name Match" << endl;
 	cout << "Q - Quit" << endl;
 	cout << "? ";
 	cin >> ch;
