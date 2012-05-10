@@ -39,6 +39,7 @@ public:
 private:
 	string lastName;
 	string firstName;
+	Bir
 	//int idNumber;
 	//string emailAddress;
 	//int month;

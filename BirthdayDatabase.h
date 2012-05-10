@@ -11,7 +11,8 @@ public:
 	void run();
 private:
 	char displayMenuReadChoice();
-
+	BirthdayDatabase(const BirthdayDatabase &){} // private copy constructor
+	void operator=(const BirthdayDatabase &){} // return void since it wont be called
 	typedef set<Birthday*, Birthday::ByDate> DateSet;
 	DateSet birthdaysByDate;
 	typedef multiset<Birthday*, Birthday::ByName> NameSet;

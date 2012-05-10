@@ -41,8 +41,8 @@ BirthdayDatabase::~BirthdayDatabase() {
 	for (it = birthdaysByMonth.begin(); it != birthdaysByMonth.end(); ++it) {
 		if (outFile) {
 			writeBirthday(outFile, **it);
-			cout << "Writing:"<<**it<<endl;
-			getchar();
+			//cout << "Writing:"<<**it<<endl;
+			//getchar();
 			delete *it;
 		}
 	}
